@@ -5,7 +5,7 @@ import "time"
 type UserCreateRequest struct {
 	Email    string `json:"email" binding:"required,email"`
 	Password string `json:"password" binding:"required,min=8"`
-	FullName string `json:"full_name" binding:"required,alpha"`
+	FullName string `json:"full_name" binding:"required"`
 }
 
 type UserCreateResponse struct {
@@ -20,4 +20,9 @@ type LoginRequest struct {
 type LoginResponse struct {
 	Token    string    `json:"token"`
 	ExpireAt time.Time `json:"expire_at"`
+}
+
+type UserTokenData struct {
+	ID    string
+	Email string
 }

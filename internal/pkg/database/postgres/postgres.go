@@ -7,6 +7,8 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
+	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/entity"
+
 )
 
 func NewPostgres() *gorm.DB {
@@ -31,5 +33,5 @@ func NewPostgres() *gorm.DB {
 }
 
 func migrate(db *gorm.DB) {
-
+	db.AutoMigrate(entity.User{})
 }
