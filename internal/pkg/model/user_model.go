@@ -30,5 +30,5 @@ type UserTokenData struct {
 type UserProfileResponse struct {
 	ID       string `json:"id"`
 	Email    string `json:"email"`
-	FullName string `json:"full_name`
+	FullName string `json:"full_name"`
 }
