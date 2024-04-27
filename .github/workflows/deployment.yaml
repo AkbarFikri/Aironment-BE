@@ -19,10 +19,11 @@ jobs:
           user: ${{ secrets.USERNAME }}
           pass: ${{ secrets.PASSWORD }}
           run: |
-            cd /aironment-be
+            cd aironment-be
             git stash
             git pull origin main
             git status
+            export PATH=$PATH:/usr/local/go/bin
             go mod tidy
             go build -o main ./cmd/app
             systemctl restart aironment.service
