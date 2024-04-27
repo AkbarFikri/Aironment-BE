@@ -5,8 +5,8 @@ import "mime/multipart"
 type CommunityRequest struct {
 	Name           string                `form:"name"`
 	Description    string                `form:"description"`
-	ProfilePicture *multipart.FileHeader `form:"profile_picture"`
-	CoverPicture   *multipart.FileHeader `form:"cover_picture"`
+	ProfilePicture *multipart.FileHeader `form:"profile_picture" binding:"required"`
+	CoverPicture   *multipart.FileHeader `form:"cover_picture" binding:"required"`
 	Price          uint64                `form:"price"`
 }
 
