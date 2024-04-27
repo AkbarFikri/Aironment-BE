@@ -7,7 +7,6 @@ import (
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler/middleware"
-
 )
 
 type RouteConfig struct {
@@ -29,7 +28,7 @@ func (c *RouteConfig) ServeRoute() {
 	c.App.Use(middleware.CORSMiddleware())
 
 	c.App.GET("/healt", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "message": "Backend ready! Testing 2"})
+		ctx.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "message": "Backend ready! Testing 3"})
 	})
 
 	v1 := c.App.Group("/api/v1")
