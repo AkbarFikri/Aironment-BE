@@ -4,6 +4,7 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/entity"
+
 )
 
 type PostRepository struct {
@@ -14,6 +15,16 @@ func NewPost(DB *gorm.DB) PostRepository {
 	return PostRepository{
 		db: DB,
 	}
+}
+
+func (r *PostRepository) FindByCategory(id int) ([]entity.Post, error) {
+	var posts []entity.Post
+
+	if err := r.db.Where("category = ?", id).Find(&posts).Error; err != nil {
+		return posts, err
+	}
+
+	return posts, nil
 }
 
 func (r *PostRepository) FindAllImageByCommunity(id string) ([]entity.Post, error) {

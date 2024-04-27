@@ -9,3 +9,9 @@ type AqiResponse struct {
 	Latitude  float64 `json:"latitude"`
 	Longitude float64 `json:"longitude"`
 }
+
+type GoogleResAqi struct {
+	DateTime   string `json:"dateTime"`
+	RegionCode string `json:"regionCode"`
+	Indexes    any    `json:"indexes"`
+}

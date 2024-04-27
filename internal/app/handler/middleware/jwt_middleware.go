@@ -9,6 +9,7 @@ import (
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/helper"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
+
 )
 
 func JwtUser() gin.HandlerFunc {
@@ -21,6 +22,7 @@ func JwtUser() gin.HandlerFunc {
 			res.Message = "Authorization is required for this endpoint"
 			res.Payload = nil
 			c.AbortWithStatusJSON(http.StatusForbidden, res)
+			return
 		}
 
 		if !strings.Contains(c.GetHeader("Authorization"), "Bearer") {
@@ -28,6 +30,7 @@ func JwtUser() gin.HandlerFunc {
 			res.Message = "accessToken invalid or expired"
 			res.Payload = nil
 			c.AbortWithStatusJSON(http.StatusForbidden, res)
+			return
 		}
 
 		token, err := helper.VerifyTokenHeader(c)

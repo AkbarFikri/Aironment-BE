@@ -27,3 +27,9 @@ type Details struct {
 	Description string   `json:"description"`
 	Galery      []string `json:"galery"`
 }
+
+type Member struct {
+	ID          string `json:"id"`
+	UserID      string `json:"user_id"`
+	CommunityID string `json:"community_id"`
+}

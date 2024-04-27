@@ -26,7 +26,7 @@ func (r *CommunityRepository) FindById(id string) (entity.Community, error) {
 
 func (r *CommunityRepository) FindAll() ([]entity.Community, error) {
 	var community []entity.Community
-	if err := r.db.Where("status = verified").Find(&community).Error; err != nil {
+	if err := r.db.Where("status = ?", "verified").Find(&community).Error; err != nil {
 		return community, err
 	}
 	return community, nil

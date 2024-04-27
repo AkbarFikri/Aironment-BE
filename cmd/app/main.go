@@ -35,17 +35,22 @@ func main() {
 	UserService := service.NewUser(UserRepository)
 	PaymentService := service.NewPayment(InvoiceRepository, CommunityRepository, supabase)
 	CommunityService := service.NewCommunity(CommunityRepository, CommunityMemberRepository, UserRepository, PostRepository)
+	AqiService := service.NewAqi()
 
 	// Handler
 	AuthHandler := handler.NewAuth(AuthService)
 	UserHandler := handler.NewUser(UserService)
 	CommunityHandler := handler.NewCommunity(CommunityService, PaymentService)
+	PaymentHandler := handler.NewPayment(CommunityService, PaymentService)
+	AqiHandler := handler.NewAqi(AqiService)
 
 	route := route.RouteConfig{
-		App:         app,
-		AuthHandler: AuthHandler,
-		UserHandler: UserHandler,
+		App:              app,
+		AuthHandler:      AuthHandler,
+		UserHandler:      UserHandler,
 		CommunityHandler: CommunityHandler,
+		PaymentHandler:   PaymentHandler,
+		AqiHandler: AqiHandler,
 	}
 
 	route.Setup()

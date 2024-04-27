@@ -4,7 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/service"
-
 )
 
 type PaymentHandler struct {
@@ -16,7 +15,7 @@ func NewPayment(cs service.CommunityService,
 	ps service.PaymentService) PaymentHandler {
 	return PaymentHandler{
 		CommunityService: cs,
-		PaymentService: ps,
+		PaymentService:   ps,
 	}
 }
 
@@ -35,6 +34,7 @@ func (h *PaymentHandler) Verify(ctx *gin.Context) {
 
 	success := h.PaymentService.VerifyPayment(orderId)
 	if !success {
+		return
 	}
 	h.CommunityService.VerifiedCommunity(orderId)
 }

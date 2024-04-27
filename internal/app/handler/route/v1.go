@@ -15,6 +15,8 @@ type RouteConfig struct {
 	AuthHandler      handler.AuthHandler
 	UserHandler      handler.UserHandler
 	CommunityHandler handler.CommunityHandler
+	PaymentHandler   handler.PaymentHandler
+	AqiHandler       handler.AqiHandler
 }
 
 func (c *RouteConfig) Setup() {
@@ -37,6 +39,8 @@ func (c *RouteConfig) ServeRoute() {
 	c.AuthRoute(v1)
 	c.UserRoute(v1)
 	c.CommunityRoute(v1)
+	c.PaymentRoute(v1)
+	c.AQIRoute(v1)
 }
 
 func (c *RouteConfig) AuthRoute(r *gin.RouterGroup) {
@@ -55,5 +59,22 @@ func (c *RouteConfig) UserRoute(r *gin.RouterGroup) {
 func (c *RouteConfig) CommunityRoute(r *gin.RouterGroup) {
 	commEnds := r.Group("/community")
 	commEnds.Use(middleware.JwtUser())
+	commEnds.GET("", c.CommunityHandler.GetCommunities)
+	commEnds.GET("/:id", c.CommunityHandler.GetCommunityDetails)
 	commEnds.POST("", c.CommunityHandler.CreateCommunity)
+}
+
+func (c *RouteConfig) PaymentRoute(r *gin.RouterGroup) {
+	paymentEnds := r.Group("/payment")
+	paymentEnds.POST("/verify", c.PaymentHandler.Verify)
+}
+
+func (c *RouteConfig) AQIRoute(r *gin.RouterGroup) {
+	AqiEnds := r.Group("/airquality")
+	AqiEnds.GET("", c.AqiHandler.GetCurrentPosition)
+}
+
+func (c *RouteConfig) PostRoute(r *gin.RouterGroup) {
+	postEnds := r.Group("/post")
+	postEnds.GET(":id", )
 }

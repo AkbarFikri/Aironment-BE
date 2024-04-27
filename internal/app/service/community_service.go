@@ -4,9 +4,11 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/google/uuid"
+
+	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/entity"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/repository"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
-
 )
 
 type CommunityService struct {
@@ -20,9 +22,9 @@ func NewCommunity(cr repository.CommunityRepository, cmr repository.CommunityMem
 	ur repository.UserRepository, pr repository.PostRepository) CommunityService {
 	return CommunityService{
 		CommunityMemberRepository: cmr,
-		UserRepository: ur,
-		PostRepository: pr,
-		CommunityRepository: cr,
+		UserRepository:            ur,
+		PostRepository:            pr,
+		CommunityRepository:       cr,
 	}
 }
 
@@ -157,7 +159,7 @@ func (s *CommunityService) FetchCommunityDetails(id string) (model.ServiceRespon
 	res := model.CommunityDetails{
 		Detail: model.Details{
 			Description: community.Description,
-			Galery: postImageUrl,
+			Galery:      postImageUrl,
 		},
 		Member: membersComm,
 	}
@@ -166,6 +168,44 @@ func (s *CommunityService) FetchCommunityDetails(id string) (model.ServiceRespon
 		Code:    http.StatusOK,
 		Error:   false,
 		Message: "successfully find all comunitys",
+		Payload: res,
+	}, nil
+}
+
+func (s *CommunityService) JoinCommunity(user model.UserTokenData, CommID string) (model.ServiceResponse, error) {
+	Community, err := s.CommunityRepository.FindById(CommID)
+	if err != nil {
+		return model.ServiceResponse{
+			Code:    http.StatusBadRequest,
+			Error:   true,
+			Message: "community not foud",
+		}, err
+	}
+
+	member := entity.Member{
+		ID:          uuid.NewString(),
+		UserID:      user.ID,
+		CommunityID: Community.ID,
+	}
+
+	if err := s.CommunityMemberRepository.Insert(member); err != nil {
+		return model.ServiceResponse{
+			Code:    http.StatusInternalServerError,
+			Error:   true,
+			Message: "failed to save member to database",
+		}, err
+	}
+
+	res := model.Member{
+		ID:          member.ID,
+		UserID:      member.UserID,
+		CommunityID: member.CommunityID,
+	}
+
+	return model.ServiceResponse{
+		Code:    http.StatusOK,
+		Error:   false,
+		Message: "success",
 		Payload: res,
 	}, nil
 }
