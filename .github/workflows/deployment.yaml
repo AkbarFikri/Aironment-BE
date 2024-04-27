@@ -1,0 +1,31 @@
+name: 🎯 Build and deploy apps to server
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - internal/
+      - cmd/
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /aironment-be
+            git stash
+            git pull origin main
+            git status
+            go mod tidy
+            go build -o main ./cmd/app
+            systemctl restart aironment.service
