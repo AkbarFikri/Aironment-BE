@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/repository"
+	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/helper"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
 )
 
@@ -63,5 +64,60 @@ func (s *UserService) FetchAirQualitysPoints(req model.AqiParam) (model.ServiceR
 		}, err
 	}
 
-	return model.ServiceResponse{}, nil
+	var res []model.AqiResponse
+
+	for i := 0; i < 2; i++ {
+		dumpLat := latitude + (float64(helper.GenerateRandomInt(3)) * 0.00001)
+		dumpLong := longitude + (float64(helper.GenerateRandomInt(3)) * 0.00001)
+
+		dump := model.AqiResponse{
+			Latitude:  dumpLat,
+			Longitude: dumpLong,
+		}
+
+		res = append(res, dump)
+	}
+
+	for i := 0; i < 2; i++ {
+		dumpLat := latitude - (float64(helper.GenerateRandomInt(3)) * 0.00001)
+		dumpLong := longitude + (float64(helper.GenerateRandomInt(3)) * 0.00001)
+
+		dump := model.AqiResponse{
+			Latitude:  dumpLat,
+			Longitude: dumpLong,
+		}
+
+		res = append(res, dump)
+	}
+
+	for i := 0; i < 2; i++ {
+		dumpLat := latitude + (float64(helper.GenerateRandomInt(3)) * 0.00001)
+		dumpLong := longitude - (float64(helper.GenerateRandomInt(3)) * 0.00001)
+
+		dump := model.AqiResponse{
+			Latitude:  dumpLat,
+			Longitude: dumpLong,
+		}
+
+		res = append(res, dump)
+	}
+
+	for i := 0; i < 2; i++ {
+		dumpLat := latitude - (float64(helper.GenerateRandomInt(3)) * 0.00001)
+		dumpLong := longitude - (float64(helper.GenerateRandomInt(3)) * 0.00001)
+
+		dump := model.AqiResponse{
+			Latitude:  dumpLat,
+			Longitude: dumpLong,
+		}
+
+		res = append(res, dump)
+	}
+
+	return model.ServiceResponse{
+		Code:    http.StatusOK,
+		Error:   false,
+		Message: "success get lat and long point around user",
+		Payload: res,
+	}, nil
 }
