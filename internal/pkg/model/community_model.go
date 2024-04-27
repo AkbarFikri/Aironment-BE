@@ -33,3 +33,7 @@ type Member struct {
 	UserID      string `json:"user_id"`
 	CommunityID string `json:"community_id"`
 }
+
+type MemberRequest struct {
+	CommunityID string `json:"community_id" binding:"required"`
+}

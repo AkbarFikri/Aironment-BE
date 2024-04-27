@@ -7,7 +7,6 @@ import (
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler/middleware"
-
 )
 
 type RouteConfig struct {
@@ -63,6 +62,7 @@ func (c *RouteConfig) CommunityRoute(r *gin.RouterGroup) {
 	commEnds.GET("", c.CommunityHandler.GetCommunities)
 	commEnds.GET("/:id", c.CommunityHandler.GetCommunityDetails)
 	commEnds.POST("", c.CommunityHandler.CreateCommunity)
+	commEnds.POST("/join", c.CommunityHandler.JoinCommunity)
 }
 
 func (c *RouteConfig) PaymentRoute(r *gin.RouterGroup) {

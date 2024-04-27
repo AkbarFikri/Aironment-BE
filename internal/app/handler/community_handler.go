@@ -8,7 +8,6 @@ import (
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/service"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/helper"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
-
 )
 
 type CommunityHandler struct {
@@ -68,6 +67,28 @@ func (h *CommunityHandler) GetCommunityDetails(ctx *gin.Context) {
 	}
 
 	data, err := h.CommunityService.FetchCommunityDetails(CommID)
+	if err != nil {
+		helper.ErrorResponse(ctx, data)
+		return
+	}
+
+	helper.SuccessResponse(ctx, data)
+}
+
+func (h *CommunityHandler) JoinCommunity(ctx *gin.Context) {
+	user := helper.GetUserLoginData(ctx)
+	var req model.MemberRequest
+
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		helper.ErrorResponse(ctx, model.ServiceResponse{
+			Code:    http.StatusBadRequest,
+			Error:   true,
+			Message: "invalid request payload",
+		})
+		return
+	}
+
+	data, err := h.CommunityService.JoinCommunity(user, req.CommunityID)
 	if err != nil {
 		helper.ErrorResponse(ctx, data)
 		return
