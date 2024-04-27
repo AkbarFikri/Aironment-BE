@@ -11,9 +11,10 @@ import (
 )
 
 type RouteConfig struct {
-	App         *gin.Engine
-	AuthHandler handler.AuthHandler
-	UserHandler handler.UserHandler
+	App              *gin.Engine
+	AuthHandler      handler.AuthHandler
+	UserHandler      handler.UserHandler
+	CommunityHandler handler.CommunityHandler
 }
 
 func (c *RouteConfig) Setup() {
@@ -35,6 +36,7 @@ func (c *RouteConfig) ServeRoute() {
 	v1 := c.App.Group("/api/v1")
 	c.AuthRoute(v1)
 	c.UserRoute(v1)
+	c.CommunityRoute(v1)
 }
 
 func (c *RouteConfig) AuthRoute(r *gin.RouterGroup) {
@@ -48,4 +50,10 @@ func (c *RouteConfig) UserRoute(r *gin.RouterGroup) {
 	userEnds.Use(middleware.JwtUser())
 	userEnds.GET("/current", c.UserHandler.CurrentUser)
 	userEnds.GET("/airqualitys", c.UserHandler.GetAirqualityPoints)
+}
+
+func (c *RouteConfig) CommunityRoute(r *gin.RouterGroup) {
+	commEnds := r.Group("/community")
+	commEnds.Use(middleware.JwtUser())
+	commEnds.POST("", c.CommunityHandler.CreateCommunity)
 }

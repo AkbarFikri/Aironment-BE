@@ -10,6 +10,14 @@ require (
 )
 
 require (
+	github.com/fatih/color v1.15.0 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/midtrans/midtrans-go v1.3.8 // indirect
+)
+
+require (
+	github.com/adityarizkyramadhan/supabase-storage-uploader v1.0.0
+	github.com/allegro/bigcache v1.2.1
 	github.com/bytedance/sonic v1.11.6 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect

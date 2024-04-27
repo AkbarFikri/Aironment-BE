@@ -4,7 +4,6 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/entity"
-
 )
 
 type UserRepository struct {
@@ -15,6 +14,22 @@ func NewUser(DB *gorm.DB) UserRepository {
 	return UserRepository{
 		db: DB,
 	}
+}
+
+func (r *UserRepository) FindManyById(ids []string) ([]entity.User, error) {
+	idsInterface := make([]interface{}, len(ids))
+	for i, id := range ids {
+		idsInterface[i] = id
+	}
+
+	var users []entity.User
+
+	if err := r.db.Where("id IN ?", idsInterface).Find(&users).Error; err != nil {
+		return users, err
+	}
+
+	return users, nil
+
 }
 
 func (r *UserRepository) FindByEmail(email string) (entity.User, error) {

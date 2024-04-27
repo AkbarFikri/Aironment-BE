@@ -7,6 +7,7 @@ import (
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/repository"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/helper"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
+
 )
 
 type UserService struct {

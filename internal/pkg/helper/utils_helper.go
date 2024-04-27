@@ -8,7 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
-
 )
 
 func GetUserLoginData(c *gin.Context) model.UserTokenData {
@@ -27,7 +26,7 @@ func GenerateRandomInt(n int) int64 {
 	}
 
 	dump := string(b)
-	dump2, _ := strconv.ParseInt(dump, 0, 16)
+	dump2, _ := strconv.ParseInt(dump, 0, 64)
 
 	return dump2
 }

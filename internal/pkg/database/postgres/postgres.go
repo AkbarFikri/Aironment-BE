@@ -8,7 +8,6 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/entity"
-
 )
 
 func NewPostgres() *gorm.DB {
@@ -34,4 +33,9 @@ func NewPostgres() *gorm.DB {
 
 func migrate(db *gorm.DB) {
 	db.AutoMigrate(entity.User{})
+	db.AutoMigrate(entity.Community{})
+	db.AutoMigrate(entity.Invoice{})
+	db.AutoMigrate(entity.Member{})
+	db.AutoMigrate(entity.Post{})
+	db.AutoMigrate(entity.Terminal{})
 }
