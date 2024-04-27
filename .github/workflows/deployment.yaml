@@ -18,7 +18,7 @@ jobs:
           port: ${{ secrets.PORT }}
           user: ${{ secrets.USERNAME }}
           pass: ${{ secrets.PASSWORD }}
-          script: |
+          run: |
             cd /aironment-be
             git stash
             git pull origin main
