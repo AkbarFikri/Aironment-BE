@@ -9,6 +9,7 @@ import (
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/repository"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/service"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/database/postgres"
+
 )
 
 func main() {
@@ -25,13 +26,16 @@ func main() {
 
 	// Service
 	AuthService := service.NewAuth(UserRepository)
+	UserService := service.NewUser(UserRepository)
 
 	// Handler
 	AuthHandler := handler.NewAuth(AuthService)
+	UserHandler := handler.NewUser(UserService)
 
 	route := route.RouteConfig{
 		App:         app,
 		AuthHandler: AuthHandler,
+		UserHandler: UserHandler,
 	}
 
 	route.Setup()

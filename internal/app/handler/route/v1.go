@@ -7,11 +7,13 @@ import (
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler/middleware"
+
 )
 
 type RouteConfig struct {
 	App         *gin.Engine
 	AuthHandler handler.AuthHandler
+	UserHandler handler.UserHandler
 }
 
 func (c *RouteConfig) Setup() {
@@ -32,10 +34,17 @@ func (c *RouteConfig) ServeRoute() {
 
 	v1 := c.App.Group("/api/v1")
 	c.AuthRoute(v1)
+	c.UserRoute(v1)
 }
 
 func (c *RouteConfig) AuthRoute(r *gin.RouterGroup) {
 	authEnds := r.Group("/auth")
 	authEnds.POST("/register", c.AuthHandler.Register)
 	authEnds.POST("/login", c.AuthHandler.Login)
+}
+
+func (c *RouteConfig) UserRoute(r *gin.RouterGroup) {
+	userEnds := r.Group("/user")
+	userEnds.Use(middleware.JwtUser())
+	userEnds.GET("/current", c.UserHandler.CurrentUser)
 }
