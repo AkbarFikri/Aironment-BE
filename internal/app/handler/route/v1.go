@@ -7,6 +7,7 @@ import (
 
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler/middleware"
+
 )
 
 type RouteConfig struct {
@@ -51,8 +52,7 @@ func (c *RouteConfig) AuthRoute(r *gin.RouterGroup) {
 
 func (c *RouteConfig) UserRoute(r *gin.RouterGroup) {
 	userEnds := r.Group("/user")
-	userEnds.Use(middleware.JwtUser())
-	userEnds.GET("/current", c.UserHandler.CurrentUser)
+	userEnds.GET("/current",middleware.JwtUser(), c.UserHandler.CurrentUser)
 	userEnds.GET("/airqualitys", c.UserHandler.GetAirqualityPoints)
 }
 
