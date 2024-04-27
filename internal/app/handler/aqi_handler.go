@@ -5,10 +5,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/service"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/helper"
 	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/service"
-
 )
 
 type AqiHandler struct {
@@ -35,9 +34,9 @@ func (h *AqiHandler) GetCurrentPosition(ctx *gin.Context) {
 
 	data, err := h.AqiService.FetchAqiData(param)
 	if err != nil {
-		helper.ErrorResponse(ctx, data)
+		ctx.JSON(400, data.Payload)
 		return
 	}
 
-	helper.SuccessResponse(ctx, data)
+	ctx.JSON(200, data.Payload)
 }

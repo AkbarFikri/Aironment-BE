@@ -17,6 +17,7 @@ type RouteConfig struct {
 	CommunityHandler handler.CommunityHandler
 	PaymentHandler   handler.PaymentHandler
 	AqiHandler       handler.AqiHandler
+	PostHandler      handler.PostHandler
 }
 
 func (c *RouteConfig) Setup() {
@@ -76,5 +77,5 @@ func (c *RouteConfig) AQIRoute(r *gin.RouterGroup) {
 
 func (c *RouteConfig) PostRoute(r *gin.RouterGroup) {
 	postEnds := r.Group("/post")
-	postEnds.GET(":id", )
+	postEnds.GET("/:id", c.PostHandler.GetData)
 }
