@@ -4,6 +4,10 @@ Aironment adalah aplikasi yang menyediakan wadah untuk membuat komunitas yang di
 
 <u>**Aironment By Rawr in Glory**</u>
 
+> **FINALLYYY WE FINISH THE COMPETITION AS A 2ND WINNER!!!**
+
+![WINNERRR](/public/winner.jpg)
+
 ## 📒 Index
 
 - [📒 Index](#-index)

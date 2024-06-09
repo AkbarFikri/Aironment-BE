@@ -47,7 +47,7 @@ func (s *AqiService) FetchAqiData(req model.AqiParam) (model.ServiceResponse, er
 
 	responseBody := bytes.NewBuffer(postBody)
 	//Leverage Go's HTTP Post function to make request
-	resp, err := http.Post("https://airquality.googleapis.com/v1/currentConditions:lookup?key=AIzaSyBK-svaulFH2SUe_wktb5Nfev9eHARWzCc", "application/json", responseBody)
+	resp, err := http.Post("https://airquality.googleapis.com/v1/currentConditions:lookup?key=", "application/json", responseBody)
 	//Handle Error
 	if err != nil {
 		log.Fatalf("An Error Occured %v", err)
