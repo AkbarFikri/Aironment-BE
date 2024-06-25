@@ -1,4 +1,4 @@
-module github.com/AkbarFikri/hackfestuc2024_backend
+module github.com/AkbarFikri/Aironment-BE
 
 go 1.21.5
 

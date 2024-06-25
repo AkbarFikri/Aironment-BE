@@ -3,7 +3,7 @@ package handler
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/service"
+	"github.com/AkbarFikri/Aironment-BE/internal/app/service"
 )
 
 type PaymentHandler struct {

@@ -4,13 +4,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler/route"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/repository"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/service"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/database/postgres"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/supabase"
-
+	"github.com/AkbarFikri/Aironment-BE/internal/app/handler"
+	"github.com/AkbarFikri/Aironment-BE/internal/app/handler/route"
+	"github.com/AkbarFikri/Aironment-BE/internal/app/repository"
+	"github.com/AkbarFikri/Aironment-BE/internal/app/service"
+	"github.com/AkbarFikri/Aironment-BE/internal/pkg/database/postgres"
+	"github.com/AkbarFikri/Aironment-BE/internal/pkg/supabase"
 )
 
 func main() {
@@ -50,7 +49,7 @@ func main() {
 		UserHandler:      UserHandler,
 		CommunityHandler: CommunityHandler,
 		PaymentHandler:   PaymentHandler,
-		AqiHandler: AqiHandler,
+		AqiHandler:       AqiHandler,
 	}
 
 	route.Setup()

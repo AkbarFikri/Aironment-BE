@@ -6,11 +6,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/entity"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/repository"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/helper"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
-
+	"github.com/AkbarFikri/Aironment-BE/internal/app/entity"
+	"github.com/AkbarFikri/Aironment-BE/internal/app/repository"
+	"github.com/AkbarFikri/Aironment-BE/internal/pkg/helper"
+	"github.com/AkbarFikri/Aironment-BE/internal/pkg/model"
 )
 
 type AuthService struct {

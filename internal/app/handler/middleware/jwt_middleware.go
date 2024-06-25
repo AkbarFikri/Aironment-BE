@@ -7,9 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
 
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/helper"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
-
+	"github.com/AkbarFikri/Aironment-BE/internal/pkg/helper"
+	"github.com/AkbarFikri/Aironment-BE/internal/pkg/model"
 )
 
 func JwtUser() gin.HandlerFunc {

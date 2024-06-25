@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/entity"
+	"github.com/AkbarFikri/Aironment-BE/internal/app/entity"
 	"gorm.io/gorm"
 )
 

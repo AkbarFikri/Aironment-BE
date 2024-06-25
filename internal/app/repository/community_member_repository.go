@@ -3,8 +3,7 @@ package repository
 import (
 	"gorm.io/gorm"
 
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/entity"
-
+	"github.com/AkbarFikri/Aironment-BE/internal/app/entity"
 )
 
 type CommunityMemberRepository struct {

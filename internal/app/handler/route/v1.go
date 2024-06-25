@@ -5,9 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/handler/middleware"
-
+	"github.com/AkbarFikri/Aironment-BE/internal/app/handler"
+	"github.com/AkbarFikri/Aironment-BE/internal/app/handler/middleware"
 )
 
 type RouteConfig struct {
@@ -52,7 +51,7 @@ func (c *RouteConfig) AuthRoute(r *gin.RouterGroup) {
 
 func (c *RouteConfig) UserRoute(r *gin.RouterGroup) {
 	userEnds := r.Group("/user")
-	userEnds.GET("/current",middleware.JwtUser(), c.UserHandler.CurrentUser)
+	userEnds.GET("/current", middleware.JwtUser(), c.UserHandler.CurrentUser)
 	userEnds.GET("/airqualitys", c.UserHandler.GetAirqualityPoints)
 }
 

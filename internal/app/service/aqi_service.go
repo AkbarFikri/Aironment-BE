@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
+	"github.com/AkbarFikri/Aironment-BE/internal/pkg/model"
 )
 
 type AqiService struct{}

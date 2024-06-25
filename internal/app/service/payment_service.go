@@ -11,10 +11,9 @@ import (
 	"github.com/midtrans/midtrans-go/coreapi"
 	"github.com/midtrans/midtrans-go/snap"
 
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/entity"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/app/repository"
-	"github.com/AkbarFikri/hackfestuc2024_backend/internal/pkg/model"
-
+	"github.com/AkbarFikri/Aironment-BE/internal/app/entity"
+	"github.com/AkbarFikri/Aironment-BE/internal/app/repository"
+	"github.com/AkbarFikri/Aironment-BE/internal/pkg/model"
 )
 
 type PaymentService struct {
